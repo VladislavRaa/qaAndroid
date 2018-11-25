@@ -1,8 +1,6 @@
 package ru.tinkoff.uiautomator.application
 
-
 import ru.tinkoff.uiautomator.util.*
-
 
 class YouTube : AbstractApplication("com.google.android.youtube") {
     fun clickSearch() {
@@ -26,26 +24,28 @@ class YouTube : AbstractApplication("com.google.android.youtube") {
     }
 
     fun addTiming(TimeSeconds: Int) {
-        clickPlayer()
+        activePlayer()
         val stringSeconds = byStringRes("com.google.android.youtube:id/time_bar_current_time").waitFindObject().text
         val time = TimeSeconds - stringSeconds.substringAfter(":").toLong()
         Thread.sleep(time * 1000)
         pauseButton()
     }
 
-    private fun waitAdv() {
+    /*private fun waitAdv() {
         val stringSeconds = byStringRes("com.google.android.youtube:id/ad_timer_text").waitFindObject().text
-        val time = (stringSeconds.substringAfter(":").toLong() - 2)
+        val time = stringSeconds.substringAfter(":").toLong()
         Thread.sleep(time * 1000)
-    }
+    }*/
 
     fun checkAdv() {
         if (byStringRes("com.google.android.youtube:id/ad_timer_text").waitHasObject()) {
-            waitAdv()
+            val stringSeconds = byStringRes("com.google.android.youtube:id/ad_timer_text").waitFindObject().text
+            val time = stringSeconds.substringAfter(":").toLong()
+            Thread.sleep(time * 1000)
         }
     }
 
-    private fun clickPlayer() {
+    private fun activePlayer() {
         byStringRes("com.google.android.youtube:id/player_fragment_container").waitFindObject().click()
     }
 

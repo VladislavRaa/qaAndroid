@@ -8,8 +8,8 @@ class YoutubeTest : AbstractApplicationTest<YouTube>(YouTube()){
     fun stopVideo() {
         app.open()
         app.clickSearch()
-        app.typeToSearch("JoHn muir")
-        app.click("JoHn")
+        app.typeToSearch("ВРЕМЕННЫЕ ТРУДНОСТИ")
+        app.click("BadComedian")
         app.checkAdv()
         app.addTiming(10)
     }
