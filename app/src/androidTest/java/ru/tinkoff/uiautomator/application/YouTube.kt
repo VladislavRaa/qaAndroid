@@ -31,12 +31,6 @@ class YouTube : AbstractApplication("com.google.android.youtube") {
         pauseButton()
     }
 
-    /*private fun waitAdv() {
-        val stringSeconds = byStringRes("com.google.android.youtube:id/ad_timer_text").waitFindObject().text
-        val time = stringSeconds.substringAfter(":").toLong()
-        Thread.sleep(time * 1000)
-    }*/
-
     fun checkAdv() {
         if (byStringRes("com.google.android.youtube:id/ad_timer_text").waitHasObject()) {
             val stringSeconds = byStringRes("com.google.android.youtube:id/ad_timer_text").waitFindObject().text
